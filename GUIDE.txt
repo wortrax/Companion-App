@@ -1,0 +1,39 @@
+COMPANION - PHONE EDITION  (the AI runs INSIDE your iPhone's browser)
+=====================================================================
+
+READ THIS FIRST (honest version)
+- I could not test the real thing: it needs a phone GPU (WebGPU). The app, memory, chats, buttons were tested with a fake engine; real model loading is untested.
+- Needs iOS 26+ (WebGPU in Safari). Check with Settings > Models > "Check my phone" inside the app.
+- 4B heretic does NOT exist in browser format. See "Heretic" below.
+- Safari can pause or kill the page when the screen locks or memory runs low. Keep the screen on while it writes.
+- First model download is 1-5 GB: use Wi-Fi.
+- Chats live in Safari's storage. Use Settings > Export backup regularly.
+
+STEP 1 - Put the app online (free, 10 minutes, no coding)
+The app must be served from an https address once (afterwards it works offline).
+1. Make a free account at github.com.
+2. Click + > New repository. Name: companion. Public. Create.
+3. Click "uploading an existing file". Drag in EVERYTHING from the web-app folder (index.html, app.js, characters.js, style.css, sw.js, manifest.webmanifest, both icons). Commit.
+4. Settings > Pages > Source: "Deploy from a branch", Branch: main, folder / (root). Save.
+5. After ~1 minute your address is  https://YOURNAME.github.io/companion/
+   (Your chats are NOT on GitHub; the page only contains the app code, never your data.)
+
+STEP 2 - Install on the iPhone
+1. Open the address in Safari.
+2. Share button > Add to Home Screen > Add.
+3. Open it from the home-screen icon.
+
+STEP 3 - Get a model
+Settings > Models and Downloads > pick a model > Download & use (on Wi-Fi).
+Start with "Dolphin 3.0 on Llama 3.2 3B" (small, fast, few restrictions) or Qwen3 4B.
+
+HERETIC
+- Searched: no pre-converted 4B heretic in MLC format exists. Closest ready-made, low-restriction options are in the list (Dolphin 3.0 3B, Llama 3.2 3B abliterated, Lunar Stheno 8B experimental).
+- To get a REAL heretic 4B: open convert-heretic-to-mlc.ipynb in Google Colab (colab.research.google.com > Upload), follow it. It converts p-e-w/Qwen3-4B-Instruct-2507-heretic and uploads to your Hugging Face. Then in the app: Models > Add your own model > paste address, Built on "Qwen3-4B". Untested; may need small fixes.
+- Gemma 3 heretic (what you use on the Mac) is not practical here: Gemma 3's huge vocabulary tends to exceed iPhone GPU buffer limits.
+
+IF IT DOESN'T WORK
+- "WebGPU not available": iOS older than 26.
+- Crash/reload while loading or writing: out of memory. Use a smaller model, Memory window = Small (2048), close other apps.
+- Model won't list as usable: needs 16-bit GPU support (shader-f16); the app tells you.
+- Everything vanished: Safari cleared storage. Import your backup.
